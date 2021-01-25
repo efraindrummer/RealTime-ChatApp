@@ -1,3 +1,4 @@
+import 'package:chatpp/widgets/boton_azul.dart';
 import 'package:chatpp/widgets/custom_input.dart';
 import 'package:chatpp/widgets/labels.dart';
 import 'package:chatpp/widgets/logo.dart';
@@ -9,21 +10,25 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xffF2F2F2),
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Logo(),
-            _Form(),
-            Labels(),
-            Text('Terminos y condiciones de uso', style: TextStyle(fontWeight: FontWeight.w200),)
-          ],
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.9,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Logo(),
+                _Form(),
+                Labels(),
+                Text('Terminos y condiciones de uso', style: TextStyle(fontWeight: FontWeight.w200),)
+              ],
+            ),
+          ),
         ),
       )
     );
   }
 }
-
-
 
 class _Form extends StatefulWidget {
 
@@ -57,11 +62,14 @@ class __FormState extends State<_Form> {
 
           ),
           
+          BotonAzul(
+            text: 'Ingrese',
+            onPressed: (){
+              print(emailCtrl.text);
+              print(passCtrl.text);
+            },
+          )
           
-          RaisedButton(onPressed: (){
-            print(emailCtrl.text);
-            print(passCtrl.text);
-          }),
         ],
       ),
     );
