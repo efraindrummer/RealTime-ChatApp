@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:chatpp/widgets/chat_message.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,19 @@ class _ChatPageState extends State<ChatPage> {
 
   final _textController = new TextEditingController();
   final _focusNode = new FocusNode();
+  
+  List<ChatMessage> _messages = [
+    ChatMessage(uid: '123', texto: 'Hola Mundo'),
+    ChatMessage(uid: '123', texto: 'Hola Mundo'),
+    ChatMessage(uid: '12331132', texto: 'Hola Mundo'),
+    ChatMessage(uid: '123', texto: 'Hola Mundo'),
+    ChatMessage(uid: '1231312', texto: 'Hola Mundo'),
+    ChatMessage(uid: '123', texto: 'Hola Mundo'),
+    ChatMessage(uid: '123', texto: 'Hola Mundo'),
+  ];
+
   bool _estaEscribiendo = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +52,8 @@ class _ChatPageState extends State<ChatPage> {
             Flexible(
               child: ListView.builder(
                 physics: BouncingScrollPhysics(),
-                itemBuilder: (_, i) => Text('$i'),
+                itemCount: _messages.length,
+                itemBuilder: (_, i) => _messages[i],
                 reverse: true,
               )
             ),
@@ -85,7 +99,7 @@ class _ChatPageState extends State<ChatPage> {
               margin: EdgeInsets.symmetric(horizontal: 4.0),
               child: Platform.isIOS ? CupertinoButton(
                 child: Text('Enviar'), 
-                onPressed: null
+                onPressed: _estaEscribiendo ? () => _handleSubmit(_textController.text.trim()) : null,
               ) : Container(
                 margin: EdgeInsets.symmetric(horizontal: 4.0),
                 child: IconTheme(
@@ -109,6 +123,9 @@ class _ChatPageState extends State<ChatPage> {
     print(texto);
     _textController.clear();
     _focusNode.requestFocus();
+
+    final newMessage = new ChatMessage(uid: '123', texto: texto);
+    _messages.insert(0, newMessage);
 
     setState(() {
       _estaEscribiendo = false;
