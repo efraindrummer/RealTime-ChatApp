@@ -50,7 +50,7 @@ class AuthService with ChangeNotifier {
       }
     );
 
-    print(resp.body);
+    //print(resp.body);
     this.autenticando = false;
     
     if(resp.statusCode == 200){
@@ -82,7 +82,7 @@ class AuthService with ChangeNotifier {
       }
     );
 
-    print(resp.body);
+    //print(resp.body);
     this.autenticando = false;
     
     if(resp.statusCode == 200){
@@ -110,7 +110,7 @@ class AuthService with ChangeNotifier {
       }
     );
 
-    print(resp.body);
+    //print(resp.body);
     
     if(resp.statusCode == 200){
       final loginResponse = loginResponseFromJson(resp.body);
