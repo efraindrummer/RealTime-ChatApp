@@ -1,3 +1,4 @@
+import 'package:chatpp/helpers/mostrar_alerta.dart';
 import 'package:chatpp/widgets/boton_azul.dart';
 import 'package:chatpp/widgets/custom_input.dart';
 import 'package:chatpp/widgets/labels.dart';
@@ -71,10 +72,17 @@ class __FormState extends State<_Form> {
           
           BotonAzul(
             text: 'Ingrese',
-            onPressed: authService.autenticando ? null : (){
+            onPressed: authService.autenticando ? null : () async{
               //quitar el teclado en pantalla
               FocusScope.of(context).unfocus();
-              authService.login(emailCtrl.text.trim(), passCtrl.text.trim());
+              final loginOk = await authService.login(emailCtrl.text.trim(), passCtrl.text.trim());
+
+              if(loginOk){
+                //navegar a la pantalla
+              }else{
+                //mostrar una alerta
+                mostrarAlerta(context, 'Login incorrecto', 'Revise sus credenciales nuevamente');
+              }
             },
           )
           
