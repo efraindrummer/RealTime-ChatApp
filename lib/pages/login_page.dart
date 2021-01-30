@@ -4,6 +4,10 @@ import 'package:chatpp/widgets/labels.dart';
 import 'package:chatpp/widgets/logo.dart';
 import 'package:flutter/material.dart';
 
+
+import 'package:chatpp/services/auth_service.dart';
+import 'package:provider/provider.dart';
+
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -67,6 +71,9 @@ class __FormState extends State<_Form> {
             onPressed: (){
               print(emailCtrl.text);
               print(passCtrl.text);
+
+              final authService = Provider.of<AuthService>(context, listen: false);
+              authService.login(emailCtrl.text, passCtrl.text);
             },
           )
           
