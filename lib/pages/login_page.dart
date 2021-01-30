@@ -78,7 +78,9 @@ class __FormState extends State<_Form> {
               final loginOk = await authService.login(emailCtrl.text.trim(), passCtrl.text.trim());
 
               if(loginOk){
+                //conectar al socket desde el backend server
                 //navegar a la pantalla
+                Navigator.pushReplacementNamed(context, 'usuarios');
               }else{
                 //mostrar una alerta
                 mostrarAlerta(context, 'Login incorrecto', 'Revise sus credenciales nuevamente');
