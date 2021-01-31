@@ -1,5 +1,6 @@
 import 'package:chatpp/helpers/mostrar_alerta.dart';
 import 'package:chatpp/services/auth_service.dart';
+import 'package:chatpp/services/socket_service.dart';
 import 'package:chatpp/widgets/boton_azul.dart';
 import 'package:chatpp/widgets/custom_input.dart';
 import 'package:chatpp/widgets/labels.dart';
@@ -50,6 +51,7 @@ class __FormState extends State<_Form> {
   Widget build(BuildContext context) {
 
     final authService = Provider.of<AuthService>(context);
+    final socketService = Provider.of<SocketService>(context);
 
     return Container(
       margin: EdgeInsets.only(top: 20),
@@ -90,6 +92,7 @@ class __FormState extends State<_Form> {
 
               if(registroOk == true){
                 //conectar con el backend socket server
+                socketService.connect();
                 Navigator.pushReplacementNamed(context, 'usuarios');
               }else{
                 mostrarAlerta(context, 'Registro Incorrecto', registroOk);

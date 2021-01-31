@@ -1,5 +1,6 @@
 import 'package:chatpp/models/usuario.dart';
 import 'package:chatpp/services/auth_service.dart';
+import 'package:chatpp/services/socket_service.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +25,7 @@ class _UsuariosPageState extends State<UsuariosPage> {
   Widget build(BuildContext context) {
 
     final authService = Provider.of<AuthService>(context);
+    final socketService = Provider.of<SocketService>(context);
     final usuario = authService.usuario;
 
     return Scaffold(
@@ -35,6 +37,7 @@ class _UsuariosPageState extends State<UsuariosPage> {
           icon: Icon(Icons.exit_to_app, color: Colors.black54),
           onPressed: (){
             //Desconectar del socket server
+            socketService.disconnect();
             Navigator.pushReplacementNamed(context, 'login');
             AuthService.deleteToken();
           },

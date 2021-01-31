@@ -1,4 +1,5 @@
 import 'package:chatpp/helpers/mostrar_alerta.dart';
+import 'package:chatpp/services/socket_service.dart';
 import 'package:chatpp/widgets/boton_azul.dart';
 import 'package:chatpp/widgets/custom_input.dart';
 import 'package:chatpp/widgets/labels.dart';
@@ -50,6 +51,7 @@ class __FormState extends State<_Form> {
   Widget build(BuildContext context) {
 
     final authService = Provider.of<AuthService>(context);
+    final socketService = Provider.of<SocketService>(context);
 
     return Container(
       margin: EdgeInsets.only(top: 40),
@@ -79,6 +81,7 @@ class __FormState extends State<_Form> {
 
               if(loginOk){
                 //conectar al socket desde el backend server
+                socketService.connect();
                 //navegar a la pantalla
                 Navigator.pushReplacementNamed(context, 'usuarios');
               }else{
