@@ -1,5 +1,6 @@
 import 'package:chatpp/models/usuario.dart';
 import 'package:chatpp/services/auth_service.dart';
+import 'package:chatpp/services/chat_service.dart';
 import 'package:chatpp/services/socket_service.dart';
 import 'package:chatpp/services/usuarios_service.dart';
 
@@ -19,11 +20,6 @@ class _UsuariosPageState extends State<UsuariosPage> {
 
   List<Usuario> usuarios = [];
 
-  /* final usuarios = [
-    Usuario(uid: '1', nombre: 'Efrain', email: 'test1@gmail.com', online: true),
-    Usuario(uid: '2', nombre: 'Fernando', email: 'test2@gmail.com', online: false),
-    Usuario(uid: '3', nombre: 'Christina', email: 'test3@gmail.com', online: false),
-  ]; */
 
   @override
   void initState() {
@@ -99,6 +95,12 @@ class _UsuariosPageState extends State<UsuariosPage> {
           borderRadius: BorderRadius.circular(100)
         ),
       ),
+      onTap: (){
+        
+        final chatService = Provider.of<ChatService>(context, listen: false);
+        chatService.usuarioPara = usuario;
+        Navigator.pushNamed(context, 'chat');
+      },
     );
   }
 
