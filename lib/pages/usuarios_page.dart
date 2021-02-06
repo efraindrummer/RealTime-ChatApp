@@ -38,7 +38,7 @@ class _UsuariosPageState extends State<UsuariosPage> {
       appBar: AppBar(
         title: Text(usuario.nombre, style: TextStyle(color: Colors.black54),),
         elevation: 1,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.deepPurple,
         leading: IconButton(
           icon: Icon(Icons.exit_to_app, color: Colors.black54),
           onPressed: (){
